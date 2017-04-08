@@ -10,10 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408015659) do
+ActiveRecord::Schema.define(version: 20170408022125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lists", force: :cascade do |t|
+    t.string   "title"
+    t.string   "genre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.integer  "guidebox_id"
+    t.string   "title"
+    t.integer  "release_date"
+    t.string   "rating"
+    t.string   "overview"
+    t.string   "primary_genre"
+    t.string   "secondary_genre"
+    t.string   "tertiary_genre"
+    t.string   "primary_free_name"
+    t.string   "primary_free_link"
+    t.string   "secondary_free_name"
+    t.string   "secondary_free_link"
+    t.string   "primary_web_source_name"
+    t.string   "primary_web_source_link"
+    t.string   "secondary_web_source_name"
+    t.string   "secondary_web_source_link"
+    t.string   "primary_sub_source_name"
+    t.string   "primary_sub_source_link"
+    t.string   "secondary_sub_source_name"
+    t.string   "secondary_sub_source_link"
+    t.string   "cs_media_link"
+    t.string   "trailer"
+    t.string   "sm_img"
+    t.string   "md_img"
+    t.string   "lg_img"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

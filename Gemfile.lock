@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    GuideboxWrapper (0.1.9)
     actioncable (5.0.2)
       actionpack (= 5.0.2)
       nio4r (>= 1.2, < 3.0)
@@ -166,6 +167,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  GuideboxWrapper
   byebug
   coffee-rails (~> 4.2)
   devise (~> 4.2)
