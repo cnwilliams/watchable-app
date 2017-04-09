@@ -7,13 +7,18 @@
 
       <div class="row">
         <div class="col-md-12">
-          <i class="glyphicon glyphicon-plus-sign"></i>
-          <select>
-            <option value="Comedy">Add to a list</option>
-            <optgroup label="My new lsit"></optgroup>
-            <optgroup label="Comedy"></optgroup>
-            <optgroup label="Drama"></optgroup>
-          </select>
+
+          <% if ((current_user != "") && (current_user != nil) ) %>
+
+            <i class="glyphicon glyphicon-plus-sign"></i>
+            <select>
+              <option value="Comedy">Add to a list</option>
+              <optgroup label="My new lsit"></optgroup>
+              <optgroup label="Comedy"></optgroup>
+              <optgroup label="Drama"></optgroup>
+            </select>
+
+          <% end %>
 
           <% if ((@movie.trailer != "") && (@movie.trailer != nil) ) %>
           <i class="glyphicon glyphicon-play-circle"></i>
@@ -26,10 +31,10 @@
               </div>
             </div>
           </div>
-        </div>
-      </div> <!-- /#myModal -->
+          <button type="button" class="modalButton btn btn-default" data-toggle="modal"  data-width="0" data-height="0" data-target="#myModal" data-video-fullscreen="">Watch Trailer</button>
 
-      <button type="button" class="modalButton btn btn-default" data-toggle="modal"  data-width="0" data-height="0" data-target="#myModal" data-video-fullscreen="">Watch Trailer</button>
+
+
       <% end %>
 
         </div>
