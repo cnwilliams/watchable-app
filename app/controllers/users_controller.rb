@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :current_user?, only: [:edit, :update, :destroy]
 
   # before_action :current_user?
 
@@ -78,15 +79,15 @@ class UsersController < ApplicationController
     #   User.exists?(params)
     # end
 
-    # def current_user?
-    #   if (current_user != User.find(params[:id]))
-    #     flash[:danger] = "Not authorized to view page."
-    #     if signed_in?
-    #       redirect_to user_path(current_user)
-    #     else
-    #       redirect_to root_path
-    #     end
-    #   end
-    # end
+    def current_user?
+      if (current_user != User.find(params[:id]))
+        flash[:error] = "Not authorized."
+        if signed_in?
+          redirect_to user_path(current_user)
+        else
+          redirect_to root_path
+        end
+      end
+    end
 
 end
