@@ -3,10 +3,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5 col-md-offset-0">
-      <%= image_tag @movie.lg_img, class:"img-fluid"%>
+      <%= image_tag @movie.lg_img, class:"img-responsive"%>
 
       <div class="row">
-        <div class="col-md-12"><i class="glyphicon glyphicon-plus-sign"></i>
+        <div class="col-md-12">
+          <i class="glyphicon glyphicon-plus-sign"></i>
           <select>
             <option value="Comedy">Add to a list</option>
             <optgroup label="My new lsit"></optgroup>
@@ -16,33 +17,26 @@
 
           <% if ((@movie.trailer != "") && (@movie.trailer != nil) ) %>
           <i class="glyphicon glyphicon-play-circle"></i>
-          <%= modal "#{@movie.title}", button: {caption: 'Watch Trailer'} %>
-
           <!-- thanks to http://bootsnipp.com/snippets/8Z7b -->
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<!--             <div class="modal-dialog">
-              <div class="modal-content"> -->
-<!--                 <div class="modal-header"> -->
-<div class="container iframe-modal">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  <h4 class="modal-title" id="myModalLabel"> <%= @movie.title %></h4>
-       <!--          </div> -->
+            <div class="container iframe-modal">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <div class="modal-body">
+                <iframe src="<%= @movie.trailer %>" class="iframe" name="info" seamless="" height="100%" width="100%"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /#myModal -->
 
-                <div class="modal-body">
-                  <iframe src="<%= @movie.trailer %>" class="iframe" name="info" seamless="" height="100%" width="100%"></iframe>
-                </div>
-</div>
-   <!--            </div>
-            </div> -->
-          </div> <!-- /#myModal -->
-
-
-          <iframe width="560" height="315" allowfullscreen="" frameborder="0"></iframe>
-          <button type="button" class="modalButton" data-toggle="modal" data-src="https://player.vimeo.com/video/87701971" data-width="500" data-height="281" data-target="#myModal" data-video-fullscreen="">Vimeo</button>
-          <% end %>
+      <button type="button" class="modalButton btn btn-default" data-toggle="modal"  data-width="0" data-height="0" data-target="#myModal" data-video-fullscreen="">Watch Trailer</button>
+      <% end %>
 
         </div>
-        <div class="col-md-12"></div>
+        <div class="col-md-12">
+
+
+        </div>
       </div>
     </div>
     <div class="col-md-7">
@@ -64,9 +58,38 @@
           <div class="row">
             <div class="col-md-12">
               <h2>Available on:</h2>
-              <button class="btn btn-default" type="button">Netflix </button>
-              <button class="btn btn-default" type="button">Amazon Prime</button>
-              <button class="btn btn-default" type="button">Some Other Site</button>
+
+              <% if ((@movie.primary_free_link == "") && (@movie.primary_free_link == nil)) || ((@movie.secondary_free_link == "") && (@movie.secondary_free_link == nil)) || ((@movie.primary_web_source_link == "") && (@movie.primary_web_source_link == nil)) || ((@movie.secondary_web_source_link == "") && (@movie.secondary_web_source_link == nil)) || ((@movie.primary_sub_source_link == "") && (@movie.primary_sub_source_link == nil)) || ((@movie.secondary_sub_source_link == "") && (@movie.secondary_sub_source_link == nil)) %>
+                <p>Cannot be streamed at this time</p>
+
+                <% else %>
+                  <% if ((@movie.primary_free_link != "") && (@movie.primary_free_link != nil))%>
+                    <%= button_to "#{@movie.primary_free_name}", @movie.primary_free_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                  <% if ((@movie.secondary_free_link != "") && (@movie.secondary_free_link != nil))%>
+                    <%= button_to "#{@movie.secondary_free_name}", @movie.secondary_free_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                  <% if ((@movie.primary_web_source_link != "") && (@movie.primary_web_source_link != nil))%>
+                    <%= button_to "#{@movie.primary_web_source_name}", @movie.primary_web_source_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                  <% if ((@movie.secondary_web_source_link != "") && (@movie.secondary_web_source_link != nil))%>
+                    <%= button_to "#{@movie.secondary_web_source_name}", @movie.secondary_web_source_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                  <% if ((@movie.primary_sub_source_link != "") && (@movie.primary_sub_source_link != nil))%>
+                    <%= button_to "#{@movie.primary_sub_source_name}", @movie.primary_sub_source_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                  <% if ((@movie.secondary_sub_source_link != "") && (@movie.secondary_sub_source_link != nil))%>
+                    <%= button_to "#{@movie.secondary_sub_source_name}", @movie.secondary_sub_source_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                <% end %>
+
+
             </div>
           </div>
         </div>
@@ -93,3 +116,4 @@
 
 
       <%= link_to 'Back', movies_path %>
+

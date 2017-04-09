@@ -28,7 +28,7 @@ Movie.create([
    primary_web_source_link: "https://tv.xfinity.com/entity/7338637497483535112",
    secondary_web_source_name: "STARZ",
    secondary_web_source_link: "https://www.starz.com/movies/28947",
-   primary_sub_source_name: "STARZ (Via Amazon Prime)",
+   primary_sub_source_name: "Amazon Prime",
    primary_sub_source_link:"http://www.amazon.com/gp/product/B0060D2SU6?spp=starzSub",
    secondary_sub_source_name: [],
    secondary_sub_source_link: "",
