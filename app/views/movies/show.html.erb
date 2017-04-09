@@ -54,42 +54,79 @@
       <div class="row">
         <div class="col-md-12">
           <h3>Description...</h3>
+          <h5 class="overview"> <%= @movie.overview %></h5>
 
-           <h5 class="overview"> <%= @movie.overview %></h5>
-           <p class="rating">Rating: <%= @movie.rating %></p>
+          <div class="col-md-5 col-sm-12">
+            <p class="rating">Rating: <%= @movie.rating %></p>
           </div>
 
+          <div class="col-md-7 col-sm-12">
+            <p class="genres">
+              <% if (@movie.tertiary_genre != nil) && (@movie.tertiary_genre != "") %>
+                Genres: <%= @movie.primary_genre %>, <%= @movie.secondary_genre %>, <%= @movie.tertiary_genre %>
+              <% elsif (@movie.secondary_genre != nil) && (@movie.secondary_genre != "") %>
+              Genres: <%= @movie.primary_genre %>, <%= @movie.secondary_genre %>
+              <% elsif (@movie.primary_genre != nil) && (@movie.primary_genre != "")%>
+                Genre: <%= @movie.primary_genre %>
+              <% else %>
+                Genre: Not provided
+              <% end %>
+            </p>
           </div>
+
+          <div class="col-md-7 offset-col-md-2 col-sm-12">
+            <% if (@movie.cs_media_link != nil) && (@movie.cs_media_link != "") %>
+              <p><%= link_to "Common Sense Media", @movie.cs_media_link %></p>
+            <% end %>
+          </div>
+
+        </div>
+
+      </div>
           <div class="row">
             <div class="col-md-12">
               <h2>Available on:</h2>
 
-              <% if ((@movie.primary_free_link == "") && (@movie.primary_free_link == nil)) || ((@movie.secondary_free_link == "") && (@movie.secondary_free_link == nil)) || ((@movie.primary_web_source_link == "") && (@movie.primary_web_source_link == nil)) || ((@movie.secondary_web_source_link == "") && (@movie.secondary_web_source_link == nil)) || ((@movie.primary_sub_source_link == "") && (@movie.primary_sub_source_link == nil)) || ((@movie.secondary_sub_source_link == "") && (@movie.secondary_sub_source_link == nil)) %>
-                <p>Cannot be streamed at this time</p>
+              <% if ((@movie.primary_free_link == "") || (@movie.primary_free_link == nil)) && ((@movie.secondary_free_link == "") || (@movie.secondary_free_link == nil)) && ((@movie.primary_web_source_link == "") || (@movie.primary_web_source_link == nil)) && ((@movie.secondary_web_source_link == "") || (@movie.secondary_web_source_link == nil)) && ((@movie.primary_sub_source_link == "") || (@movie.primary_sub_source_link == nil)) && ((@movie.secondary_sub_source_link == "") || (@movie.secondary_sub_source_link == nil)) %>
+
+                  Cannot be streamed at this time
 
                 <% else %>
+
                   <% if ((@movie.primary_free_link != "") && (@movie.primary_free_link != nil))%>
+                  <div class="col-md-3 col-sm-4 col-xs-6 source-btn">
                     <%= button_to "#{@movie.primary_free_name}", @movie.primary_free_link, :method => "get", class: "btn btn-default" %>
+                  </div>
                   <% end %>
 
                   <% if ((@movie.secondary_free_link != "") && (@movie.secondary_free_link != nil))%>
-                    <%= button_to "#{@movie.secondary_free_name}", @movie.secondary_free_link, :method => "get", class: "btn btn-default" %>
+                    <div class="col-md-3 col-sm-4 col-xs-6 source-btn">
+                      <%= button_to "#{@movie.secondary_free_name}", @movie.secondary_free_link, :method => "get", class: "btn btn-default" %>
+                    </div>
                   <% end %>
 
                   <% if ((@movie.primary_web_source_link != "") && (@movie.primary_web_source_link != nil))%>
-                    <%= button_to "#{@movie.primary_web_source_name}", @movie.primary_web_source_link, :method => "get", class: "btn btn-default" %>
+                    <div class="col-md-3 col-sm-4 col-xs-6 source-btn">
+                      <%= button_to "#{@movie.primary_web_source_name}", @movie.primary_web_source_link, :method => "get", class: "btn btn-default" %>
+                    </div>
                   <% end %>
 
                   <% if ((@movie.secondary_web_source_link != "") && (@movie.secondary_web_source_link != nil))%>
-                    <%= button_to "#{@movie.secondary_web_source_name}", @movie.secondary_web_source_link, :method => "get", class: "btn btn-default" %>
+                    <div class="col-md-3 col-sm-4 col-xs-6 source-btn">
+                      <%= button_to "#{@movie.secondary_web_source_name}", @movie.secondary_web_source_link, :method => "get", class: "btn btn-default" %>
+                    </div>
                   <% end %>
 
                   <% if ((@movie.primary_sub_source_link != "") && (@movie.primary_sub_source_link != nil))%>
-                    <%= button_to "#{@movie.primary_sub_source_name}", @movie.primary_sub_source_link, :method => "get", class: "btn btn-default" %>
+                    <div class="col-md-3 col-sm-4 col-xs-6 source-btn">
+                      <%= button_to "#{@movie.primary_sub_source_name}", @movie.primary_sub_source_link, :method => "get", class: "btn btn-default" %>
+                    </div>
                   <% end %>
 
                   <% if ((@movie.secondary_sub_source_link != "") && (@movie.secondary_sub_source_link != nil))%>
-                    <%= button_to "#{@movie.secondary_sub_source_name}", @movie.secondary_sub_source_link, :method => "get", class: "btn btn-default" %>
+                    <div class="col-md-3 col-sm-4 col-xs-6 source-btn">
+                      <%= button_to "#{@movie.secondary_sub_source_name}", @movie.secondary_sub_source_link, :method => "get", class: "btn btn-default" %>
+                    </div>
                   <% end %>
 
                 <% end %>
@@ -99,7 +136,7 @@
           </div>
         </div>
       </div>
-      <div class="page-header">
+      <!-- <div class="page-header">
         <h3>Reviews<button class="btn btn-primary write-review" type="button">Write a review</button></h3></div>
         <div class="media">
           <div class="media-body">
@@ -119,6 +156,6 @@
         </div>
       </div>
 
-
+ -->
       <%= link_to 'Back', movies_path %>
 
