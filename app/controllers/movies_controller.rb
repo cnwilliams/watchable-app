@@ -4,7 +4,11 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
-    @movies = Movie.all
+    @movies = if params[:title]
+      Movie.where('title LIKE ?', "%#{params[:title]}%")
+    else
+      Movie.all
+    end
   end
 
   # GET /movies/1
@@ -69,6 +73,29 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.fetch(:movie, {})
+      params.require(:movie).permit(:guidebox_id, :title, :release_date,
+    :rating,
+    :overview,
+    :primary_genre,
+    :secondary_genre,
+    :tertiary_genre,
+    :primary_free_name,
+    :primary_free_link,
+    :secondary_free_name,
+    :secondary_free_link,
+    :primary_web_source_name,
+    :primary_web_source_link,
+    :secondary_web_source_name,
+    :secondary_web_source_link,
+    :primary_sub_source_name,
+    :primary_sub_source_link,
+    :secondary_sub_source_name,
+    :secondary_sub_source_link,
+    :cs_media_link,
+    :trailer,
+    :sm_img,
+    :md_img,
+    :lg_img)
+      # params.fetch(:movie, {})
     end
 end

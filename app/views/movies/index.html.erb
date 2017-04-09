@@ -2,6 +2,10 @@
 
 <h1 class="text-center">Movies</h1>
 
+<%= form_tag(movies_path, method: :get) do %>
+  <%= text_field_tag :title %>
+  <%= submit_tag "Search" %>
+<% end %>
 
 
 
@@ -9,8 +13,6 @@
     <div class="card-group">
       <div class="col-md-4">
         <div class="card card-inverse">
-
-
             <%= link_to image_tag(movie.md_img), movie %>
 
             <br>
