@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  # before_action :current_user?
+
   # GET /users
   # GET /users.json
   def index
@@ -71,4 +73,20 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :avatar)
     end
+
+    # def check_id?(params)
+    #   User.exists?(params)
+    # end
+
+    # def current_user?
+    #   if (current_user != User.find(params[:id]))
+    #     flash[:danger] = "Not authorized to view page."
+    #     if signed_in?
+    #       redirect_to user_path(current_user)
+    #     else
+    #       redirect_to root_path
+    #     end
+    #   end
+    # end
+
 end
