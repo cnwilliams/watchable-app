@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "users#index"
+  root to: "movies#index"
 
   resources :lists
   resources :movies
