@@ -80,7 +80,7 @@ Movie.create([
     secondary_free_link: nil,
     primary_web_source_name: nil,
     primary_web_source_link: nil,
-    secondary_web_source_name: [],
+    secondary_web_source_name: "",
     secondary_web_source_link: nil,
     primary_sub_source_name: "",
     primary_sub_source_link: "",
