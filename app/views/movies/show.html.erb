@@ -1,5 +1,119 @@
 <p id="notice"><%= notice %></p>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 col-md-offset-0">
+      <%= image_tag @movie.lg_img, class:"img-responsive"%>
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
+      <div class="row">
+        <div class="col-md-12">
+          <i class="glyphicon glyphicon-plus-sign"></i>
+          <select>
+            <option value="Comedy">Add to a list</option>
+            <optgroup label="My new lsit"></optgroup>
+            <optgroup label="Comedy"></optgroup>
+            <optgroup label="Drama"></optgroup>
+          </select>
+
+          <% if ((@movie.trailer != "") && (@movie.trailer != nil) ) %>
+          <i class="glyphicon glyphicon-play-circle"></i>
+          <!-- thanks to http://bootsnipp.com/snippets/8Z7b -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="container iframe-modal">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <div class="modal-body">
+                <iframe src="<%= @movie.trailer %>" class="iframe" name="info" seamless="" height="100%" width="100%"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /#myModal -->
+
+      <button type="button" class="modalButton btn btn-default" data-toggle="modal"  data-width="0" data-height="0" data-target="#myModal" data-video-fullscreen="">Watch Trailer</button>
+      <% end %>
+
+        </div>
+        <div class="col-md-12">
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="row">
+        <div class="col-md-12">
+          <h2><%= @movie.title %></h2>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Description...</h3>
+
+           <h5 class="overview"> <%= @movie.overview %></h5>
+           <p class="rating">Rating: <%= @movie.rating %></p>
+          </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Available on:</h2>
+
+              <% if ((@movie.primary_free_link == "") && (@movie.primary_free_link == nil)) || ((@movie.secondary_free_link == "") && (@movie.secondary_free_link == nil)) || ((@movie.primary_web_source_link == "") && (@movie.primary_web_source_link == nil)) || ((@movie.secondary_web_source_link == "") && (@movie.secondary_web_source_link == nil)) || ((@movie.primary_sub_source_link == "") && (@movie.primary_sub_source_link == nil)) || ((@movie.secondary_sub_source_link == "") && (@movie.secondary_sub_source_link == nil)) %>
+                <p>Cannot be streamed at this time</p>
+
+                <% else %>
+                  <% if ((@movie.primary_free_link != "") && (@movie.primary_free_link != nil))%>
+                    <%= button_to "#{@movie.primary_free_name}", @movie.primary_free_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                  <% if ((@movie.secondary_free_link != "") && (@movie.secondary_free_link != nil))%>
+                    <%= button_to "#{@movie.secondary_free_name}", @movie.secondary_free_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                  <% if ((@movie.primary_web_source_link != "") && (@movie.primary_web_source_link != nil))%>
+                    <%= button_to "#{@movie.primary_web_source_name}", @movie.primary_web_source_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                  <% if ((@movie.secondary_web_source_link != "") && (@movie.secondary_web_source_link != nil))%>
+                    <%= button_to "#{@movie.secondary_web_source_name}", @movie.secondary_web_source_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                  <% if ((@movie.primary_sub_source_link != "") && (@movie.primary_sub_source_link != nil))%>
+                    <%= button_to "#{@movie.primary_sub_source_name}", @movie.primary_sub_source_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                  <% if ((@movie.secondary_sub_source_link != "") && (@movie.secondary_sub_source_link != nil))%>
+                    <%= button_to "#{@movie.secondary_sub_source_name}", @movie.secondary_sub_source_link, :method => "get", class: "btn btn-default" %>
+                  <% end %>
+
+                <% end %>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-header">
+        <h3>Reviews<button class="btn btn-primary write-review" type="button">Write a review</button></h3></div>
+        <div class="media">
+          <div class="media-body">
+            <h4>Love this!</h4>
+            <div><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac diam feugiat, non vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada orci finibus. </p>
+            <p><span class="reviewer-name"><strong>John Doe</strong></span><span class="review-date">7 Oct 2015</span></p>
+          </div>
+        </div>
+        <div class="media">
+          <div class="media-body">
+            <h4>Fantastic movie</h4>
+            <div><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus nisl ac diam feugiat, non vestibulum libero posuere. Vivamus pharetra leo non nulla egestas, nec malesuada orci finibus. </p>
+            <p><span class="reviewer-name"><strong>Jane Doe</strong></span><span class="review-date">7 Oct 2015</span></p>
+          </div>
+        </div>
+      </div>
+
+
+      <%= link_to 'Back', movies_path %>
+
