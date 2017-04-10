@@ -15,13 +15,15 @@
 
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, autofocus: true, required: true %>
   </div>
 
+<!-- this should be a drop down menu -->
   <div class="field">
     <%= f.label :genre %>
-    <%= f.text_field :genre %>
+    <%= f.text_field :genre, autofocus: true, required: true %>
   </div>
+
 
   <div class="actions">
     <%= f.submit %>

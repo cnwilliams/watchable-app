@@ -16,7 +16,8 @@
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', users_path %> |
+<%= link_to 'New List', new_list_path %>
 
 <% @user.lists.each do |list| %>
   <h4><%= link_to list.title.titleize, list_path(list) %></h4>

@@ -12,3 +12,20 @@
 
 <%= link_to 'Edit', edit_list_path(@list) %> |
 <%= link_to 'Back', lists_path %>
+
+<% if @list.movies != nil %>
+  <% @list.movies.each do |movie| %>
+    <h4><%= link_to movie.title.titleize, movie_path(movie) %></h4>
+    <% if (movie.tertiary_genre != nil) && (movie.tertiary_genre != "")%>
+      <h6> Genres: <%= movie.primary_genre %>, <%= movie.secondary_genre %>, <%= movie.tertiary_genre %></h6>
+    <% elsif (movie.secondary_genre != nil) && (movie.secondary_genre != "") %>
+      <h6> Genres: <%= movie.primary_genre %>, <%= movie.secondary_genre %> </h6>
+    <% elsif (movie.primary_genre != nil) && (movie.primary_genre != "") %>
+      <h6> Genre: <%= movie.primary_genre %> </h6>
+    <% else %>
+      <h6>Genre: No genre listed</h6>
+    <% end %>
+    <h6> Created on: <%= movie.created_at.strftime('%b %d, %Y') %></h6>
+    <br>
+  <% end %>
+<% end %>

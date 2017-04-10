@@ -1,0 +1,10 @@
+<% if ((current_user != "") && (current_user != nil) ) %>
+    <%= form_tag create_list_movie_path, method: :post %>
+            <div class="form-group">
+                <%= select_tag "list_id", options_from_collection_for_select(@lists, "id", "title") %>
+            </div>
+            <%= hidden_field_tag :movie_id, @movie.id %>
+            <div class="actions"><%= submit_tag %></div>
+    </form>
+<% end %>
+

@@ -14,6 +14,8 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
+    @lists = current_user.lists
+    # @list = List.find(params[:list_id])
   end
 
   # GET /movies/new
@@ -97,5 +99,17 @@ class MoviesController < ApplicationController
     :md_img,
     :lg_img)
       # params.fetch(:movie, {})
+    end
+
+    def set_list_for_movie
+      if @movie
+        @selected_list = @movie.list_id
+      elsif params[:list]
+        list_id = params[:list]
+        @list = List.find(list_id)
+        @selected_list = @list.id
+      else
+        @selected_list = nil
+      end
     end
 end

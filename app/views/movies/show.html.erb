@@ -7,18 +7,8 @@
 
       <div class="row">
         <div class="col-md-12">
+          <%= render 'add_movie_to_list', lists: @lists %>
 
-          <% if ((current_user != "") && (current_user != nil) ) %>
-
-            <i class="glyphicon glyphicon-plus-sign"></i>
-            <select>
-              <option value="Comedy">Add to a list</option>
-              <optgroup label="My new lsit"></optgroup>
-              <optgroup label="Comedy"></optgroup>
-              <optgroup label="Drama"></optgroup>
-            </select>
-
-          <% end %>
 
           <% if ((@movie.trailer != "") && (@movie.trailer != nil) ) %>
           <i class="glyphicon glyphicon-play-circle"></i>

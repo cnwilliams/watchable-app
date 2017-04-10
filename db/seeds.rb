@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Movie.destroy_all
+List.destroy_all
 
 #need to change guidebox_id to imdb_id later
 
@@ -93,3 +94,12 @@ Movie.create([
     lg_img: "http://static-api.guidebox.com/thumbnails_movies/4487-9810531204-1464307439-2653995897-large-400x570.jpg"
     }
     ])
+
+List.create([
+  {
+    title: "My list",
+    genre: "comedy",
+    movie_id: 16,
+    user_id: 1
+  }
+  ])

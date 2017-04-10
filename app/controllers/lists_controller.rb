@@ -19,6 +19,7 @@ class ListsController < ApplicationController
 
   # GET /lists/1/edit
   def edit
+    @user.lists << @list
   end
 
   # POST /lists
@@ -27,9 +28,14 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
 
     if valid_list_params?
+      if list_params[:movie_id] != nil
+        @movie = Movie.find(list_params[:movie_id])
+        @movie.lists << @list
+      end
       @list = current_user.lists.create(list_params)
       @user = User.find(list_params[:user_id])
       @user.lists << @list
+
       flash[:notice] = "List successfully created"
       redirect_to @list
     else
@@ -80,7 +86,20 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:title, :genre, :user_id)
+      params.require(:list).permit(:title, :genre, :user_id, :movie_id)
+    end
+
+# TEST
+    def set_movie_for_list
+      if @list
+        @selected_movie = @list.movie_id
+      elsif params[:movie]
+        movie_id = params[:movie]
+        @movie = Movie.find(movie_id)
+        @selected_movie = @movie.id
+      else
+        @selected_movie = nil
+      end
     end
 
     def valid_list_params?
