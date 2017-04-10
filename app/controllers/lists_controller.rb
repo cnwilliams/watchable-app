@@ -26,15 +26,26 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 
-    respond_to do |format|
-      if @list.save
-        format.html { redirect_to @list, notice: 'List was successfully created.' }
-        format.json { render :show, status: :created, location: @list }
-      else
-        format.html { render :new }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
-      end
+    if valid_list_params?
+      @list = current_user.lists.create(list_params)
+      @user = User.find(list_params[:user_id])
+      @user.lists << @list
+      flash[:notice] = "List successfully created"
+      redirect_to @list
+    else
+      flash[:error] = "List could not be created"
+      redirect_to new_list_path
     end
+
+    # respond_to do |format|
+    #   if @list.save
+    #     format.html { redirect_to @list, notice: 'List was successfully created.' }
+    #     format.json { render :show, status: :created, location: @list }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @list.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /lists/1
@@ -69,6 +80,11 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:title, :genre)
+      params.require(:list).permit(:title, :genre, :user_id)
     end
+
+    def valid_list_params?
+      List.new(list_params).valid?
+    end
+
 end

@@ -17,3 +17,15 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<% @user.lists.each do |list| %>
+  <h4><%= link_to list.title.titleize, list_path(list) %></h4>
+  <h6> Genre: <%= list.genre %></h6>
+  <h6> Created on: <%= list.created_at.strftime('%b %d, %Y') %></h6>
+  <br>
+
+
+  <% end %>
+
+  <hr>
+
