@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
   # GET /movies.json
   def index
     @movies = if params[:title]
-      Movie.where('title LIKE ?', "%#{params[:title].titleize}%")
+      Movie.where('title LIKE ?', "%#{params[:title].downcase.titleize}%")
     else
       Movie.all
     end
