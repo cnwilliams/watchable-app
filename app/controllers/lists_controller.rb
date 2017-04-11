@@ -19,7 +19,6 @@ class ListsController < ApplicationController
 
   # GET /lists/1/edit
   def edit
-    @user.lists << @list
   end
 
   # POST /lists
