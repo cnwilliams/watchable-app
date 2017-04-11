@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @lists.each do |list| %>
+    <% current_user.lists.each do |list| %>
       <tr>
         <td><%= list.title %></td>
         <td><%= list.genre %></td>
