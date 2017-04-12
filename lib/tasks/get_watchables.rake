@@ -6,7 +6,7 @@ namespace :get_watchables do
   desc "Movie seed data"
   task get_movies: :environment do
     host = "http://api-public.guidebox.com/v2"
-    api_key = "API KEY HERE"
+    api_key = "<%= Figaro.env.guidebox_api_key %>"
 
     res = RestClient.get"#{host}/movies?api_key=#{api_key}"
     res = JSON.parse(res)
@@ -23,32 +23,12 @@ namespace :get_watchables do
       m[:title] = movie["title"]
       m[:release_date] = movie["release_date"]
       m[:rating] = movie["rating"]
-      # :overview
-      # :primary_genre
-      # :secondary_genre
-      # :tertiary_genre
-      # :primary_free_name
-      # :primary_free_link
-      # :secondary_free_name
-      # :secondary_free_link
-      # :primary_web_source_name
-      # :primary_web_source_link
-      # :secondary_web_source_name
-      # :secondary_web_source_link
-      # :primary_sub_source_name
-      # :primary_sub_source_link
-      # :secondary_sub_source_name
-      # :secondary_sub_source_link
       m[:cs_media_link] = movie["common_sense_media"]
-      # :trailer
       m[:sm_img] = movie["poster_120x171"]
       m[:md_img] = movie["poster_240x342"]
       m[:lg_img] = movie["poster_400x570"]
 
-
-
       # now search for each specific movie to get additional data
-
       more_data = RestClient.get "http://api-public.guidebox.com/v2/movies/#{m[:guidebox_id].to_i}?api_key=#{api_key}"
       movie = JSON.parse(more_data)
 
@@ -123,7 +103,6 @@ namespace :get_watchables do
 
         # create movie after nested iteration
         Movie.create(m)
-
     end
   end
 
