@@ -1,12 +1,12 @@
 require 'JSON'
 require 'rest-client'
-# require 'dovenv'
+require 'figaro'
 
 namespace :get_watchables do
   desc "Movie seed data"
   task get_movies: :environment do
     host = "http://api-public.guidebox.com/v2"
-    api_key = "<%= Figaro.env.guidebox_api_key %>"
+    api_key = Figaro.env.guidebox_api_key
 
     res = RestClient.get"#{host}/movies?api_key=#{api_key}"
     res = JSON.parse(res)
