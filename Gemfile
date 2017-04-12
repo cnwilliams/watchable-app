@@ -65,6 +65,7 @@ gem 'bh'
 
 gem 'rest-client'
 gem 'figaro'
+gem 'will_paginate'
 
 # gem 'omniauth'
 # gem 'omniauth-oauth2', '1.3.1'

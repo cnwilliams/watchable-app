@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
     @movies = if params[:title]
       Movie.where('title LIKE ?', "%#{params[:title].downcase.titleize}%")
     else
-      Movie.all
+      @movies = Movie.paginate(:page => params[:page], :per_page => 15)
     end
   end
 
