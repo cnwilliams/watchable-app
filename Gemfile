@@ -71,3 +71,5 @@ gem 'omniauth'
 # gem 'omniauth-oauth2', '1.3.1'
 gem 'omniauth-facebook'
 # gem 'omniauth-twitter'
+
+gem 'social-share-button'
