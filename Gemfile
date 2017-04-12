@@ -64,6 +64,7 @@ gem 'modernizr-rails'
 gem 'bh'
 
 gem 'rest-client'
+gem 'dotenv', '~> 2.2'
 
 # gem 'omniauth'
 # gem 'omniauth-oauth2', '1.3.1'
