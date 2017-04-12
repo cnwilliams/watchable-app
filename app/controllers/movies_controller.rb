@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
-    if @lists == nil
+    if current_user == nil
       flash[:notice] = "Log in to put this movie on a list!"
     else
       @lists = current_user.lists
