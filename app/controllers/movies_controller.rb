@@ -5,9 +5,11 @@ class MoviesController < ApplicationController
   # GET /movies.json
   def index
     @movies = if params[:title]
-      Movie.where('title LIKE ?', "%#{params[:title].downcase.titleize}%")
+      Movie.where('title LIKE ?', "%#{params[:title].downcase.titleize}%").paginate(:page => params[:page], :per_page => 15)
+    # elsif
+    #   flash[:notice] = 'No search results'
     else
-      @movies = Movie.paginate(:page => params[:page], :per_page => 15)
+      @movies = Movie.all.paginate(:page => params[:page], :per_page => 15)
     end
   end
 
