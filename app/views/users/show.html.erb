@@ -1,23 +1,43 @@
 
+  <div class="jumbotron">
+    <h2 class="text-center"> Welcome, <%= @user.first_name %>
+    </h2>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+</div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
 
-<p>
-  <strong>Avatar:</strong>
-  <%= @user.avatar %>
-</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %> |
-<%= link_to 'New List', new_list_path %>
+
+<div class="pull-right">
+  <%= link_to new_list_path, class: "btn btn-default" do %>
+      <i class="glyphicon glyphicon-plus"></i>
+  <% end %>
+
+  <%= link_to edit_user_path(@user), class: "btn btn-default" do %>
+      <i class="glyphicon glyphicon-cog"></i>
+  <% end %>
+</div>
+<br>
+<hr>
+
+
+
+<% @user.lists.each do |list| %>
+<div class="card-group">
+  <div class="col-md-4">
+    <div class="card row">
+      <h4><%= link_to list.title.titleize, list_path(list) %></h4>
+
+      <% if (list.genre != nil) && (list.genre != "") %>
+        <h6> Genre: <%= list.genre %></h6>
+      <% end %>
+      <h6> Created on: <%= list.created_at.strftime('%b %d, %Y') %></h6>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
+
 
 <% @user.lists.each do |list| %>
   <h4><%= link_to list.title.titleize, list_path(list) %></h4>
