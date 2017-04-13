@@ -1,14 +1,17 @@
 class ListMoviesController < ApplicationController
   def create
     list = List.find(params[:list_id])
+    movie = Movie.find(params[:movie_id])
 
-    if list.movies.include?(Movie.find(params[:movie_id]))
-      flash[:notice] = "You already have that movie in your list, silly :p"
+    if list.movies.include?(movie)
+      flash[:notice] = movie.title + " is already included in that list."
+      redirect_to movie_path(movie)
     else
       list.movies << Movie.find(params[:movie_id])
       list.save
+      redirect_to list
     end
-    redirect_to list
+
   end
 
   def destroy

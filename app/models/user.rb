@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :lists, dependent: :destroy
 
+
   after_create :add_list
 
   def self.from_omniauth(auth)
