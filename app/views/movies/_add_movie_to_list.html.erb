@@ -4,9 +4,13 @@
               <% if @lists != nil %>
                 <%= select_tag "list_id", options_from_collection_for_select(@lists, "id", "title"), prompt: "Add movie to a list" %>
               <% end %>
-            </div>
+
             <%= hidden_field_tag :movie_id, @movie.id %>
-            <div class="actions"><%= submit_tag %></div>
+
+            <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                <i class="glyphicon glyphicon-plus"></i>
+            <% end %>
+          </div>
     </form>
 <% end %>
 

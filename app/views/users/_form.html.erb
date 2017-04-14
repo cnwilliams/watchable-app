@@ -1,4 +1,6 @@
-<%= form_for(user) do |f| %>
+<div class="col-sm-6 col-md-offset-3">
+
+<%= form_for(user, class: "form-horizontal") do |f| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -11,22 +13,39 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :avatar %>
-    <%= f.text_field :avatar %>
+
+  <div class="form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autofocus: true, class: "form-control" %>
+  </div>
+
+
+ <div class="form-group">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "off", autofocus: true, class: "form-control" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+ <div class="form-group">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", autofocus: true, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>
+

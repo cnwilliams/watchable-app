@@ -1,6 +1,10 @@
 <div class="container">
+  <%= link_to 'Back', movies_path %>
+  <br>
   <div class="row">
     <div class="col-md-5 col-md-offset-0">
+<br>
+
       <%= image_tag @movie.lg_img, class:"img-responsive"%>
 
       <div class="row">
@@ -9,7 +13,7 @@
 
 
           <% if ((@movie.trailer != "") && (@movie.trailer != nil) ) %>
-          <i class="glyphicon glyphicon-play-circle"></i>
+
           <!-- thanks to http://bootsnipp.com/snippets/8Z7b -->
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="container iframe-modal">
@@ -23,6 +27,7 @@
 
 
 
+
       <% end %>
 
         </div>
@@ -32,6 +37,8 @@
         </div>
       </div>
     </div>
+
+<div class="container">
     <div class="col-md-7">
       <div class="row">
         <div class="col-md-12">
@@ -43,7 +50,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <h3>Description...</h3>
+          <h4>Description</h4>
           <h5 class="overview"> <%= @movie.overview %></h5>
 
           <div class="col-md-5 col-sm-12">
@@ -66,7 +73,8 @@
 
           <div class="col-md-7 offset-col-md-2 col-sm-12">
             <% if (@movie.cs_media_link != nil) && (@movie.cs_media_link != "") %>
-              <p><%= link_to "Common Sense Media", @movie.cs_media_link %></p>
+
+            <%= link_to image_tag("http://school.fultonschools.org/es/dunwoodysprings/PublishingImages/_t/Common%20Sense%20Media%20Image_jpg.jpg", class: "img-responsive"), @movie.cs_media_link %>
             <% end %>
           </div>
 
@@ -75,7 +83,7 @@
       </div>
           <div class="row">
             <div class="col-md-12">
-              <h2>Available on:</h2>
+              <h4>Available on:</h4>
 
               <% if ((@movie.primary_free_link == "") || (@movie.primary_free_link == nil)) && ((@movie.secondary_free_link == "") || (@movie.secondary_free_link == nil)) && ((@movie.primary_web_source_link == "") || (@movie.primary_web_source_link == nil)) && ((@movie.secondary_web_source_link == "") || (@movie.secondary_web_source_link == nil)) && ((@movie.primary_sub_source_link == "") || (@movie.primary_sub_source_link == nil)) && ((@movie.secondary_sub_source_link == "") || (@movie.secondary_sub_source_link == nil)) %>
 
@@ -125,6 +133,7 @@
           </div>
         </div>
       </div>
+      </div>
       <!-- <div class="page-header">
         <h3>Reviews<button class="btn btn-primary write-review" type="button">Write a review</button></h3></div>
         <div class="media">
@@ -146,5 +155,5 @@
       </div>
 
  -->
-      <%= link_to 'Back', movies_path %>
+
 
