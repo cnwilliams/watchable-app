@@ -33,7 +33,7 @@ Movie.create([
    secondary_sub_source_name: [],
    secondary_sub_source_link: "",
    cs_media_link: "https://www.commonsensemedia.org/movie-reviews/the-hot-chick",
-   trailer: "http://api-widget.guidebox.com/embed.php?video=59350",
+   trailer: "https://api-widget.guidebox.com/embed.php?video=59350",
    sm_img: "http://static-api.guidebox.com/thumbnails_movies_small/54435-985281608-6462099161-2181367884-small-120x171.jpg",
    md_img: "http://static-api.guidebox.com/thumbnails_movies_medium/54435-5063651637-4574180972-284735975-medium-240x342.jpg",
    lg_img: "http://static-api.guidebox.com/thumbnails_movies/54435-9808077532-5767383338-8038227595-large-400x570.jpg"
